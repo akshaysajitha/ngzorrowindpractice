@@ -1,0 +1,51 @@
+<nz-divider nzOrientation="left" nzText="Horizontal"></nz-divider>
+<div nz-row [nzGutter]="16">
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box"><p nz-typography nzEditable [(nzContent)]="editStr"></p>
+    <p
+      nz-typography
+      nzEditable
+      nzEditIcon="highlight"
+      nzEditTooltip="click to edit text"
+      [(nzContent)]="customEditIconStr"
+    ></p>
+    <p nz-typography nzEditable [nzEditTooltip]="null" [(nzContent)]="hideEditTooltipStr"></p>
+    <p nz-typography nzCopyable nzEditable [(nzContent)]="copyStr"></p>
+    <p nz-typography nzCopyable nzCopyText="Hello, Ant Design!">Replace copy text.</p>
+    <p
+      nz-typography
+      nzCopyable
+      nzContent="Custom copy icons and tooltips text."
+      [nzCopyTooltips]="['click here', copedIcon]"
+      [nzCopyIcons]="['meh', 'smile']"
+    ></p>
+    <ng-template #copedIcon>
+      <span nz-icon nzType="smile" nzTheme="fill"></span>
+      you clicked!!
+    </ng-template>
+    <p nz-typography nzCopyable [nzCopyTooltips]="null" nzContent="Hide copy tooltips."></p></div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+</div>
+<nz-divider nzOrientation="left" nzText="Responsive"></nz-divider>
+<div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+  <div nz-col class="gutter-row" [nzSpan]="6" ><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+</div>
+<nz-divider nzOrientation="left" nzText="Vertical"></nz-divider>
+<div nz-row [nzGutter]="[16, 24]">
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">col-6</div></div>
+</div>
+
+
+
+
