@@ -30,9 +30,10 @@
 
 
    
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-    Or
-    <a>register now!</a>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Submit</button>
+    
+    
+    <a></a>
   </form></div>
 
 
@@ -43,7 +44,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Age</th>
+          <th>Qualification</th>
           <th>Address</th>
         </tr>
       </thead>
@@ -58,3 +59,29 @@
   </div>
 </div>
 <!--table end-->
+
+<!--json data view-->
+<h1>json Display</h1>
+<div *ngFor="let entry of collectedData">
+  <p>Name: {{ entry.Name }}</p>
+  <p>Age: {{ entry.Age }}</p>
+  <p>Address: {{ entry.Address }}</p>
+  <hr>
+</div>
+
+
+
+<!--json data view end -->
+
+
+
+<!--data call from service-->
+<h1>Data service</h1>
+<div *ngFor="let entry of collectedDataservice ">
+  <p>Name: {{ entry.Name }}</p>
+  <p>Age: {{ entry.Age }}</p>
+  <p>Address: {{ entry.Address }}</p>
+  <hr>
+</div>
+
+<!--data call from service-->

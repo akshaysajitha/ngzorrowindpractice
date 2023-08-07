@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms'
 import { Router } from '@angular/router';
-
+import { DataService } from '../data.service';
 @Component({
   selector: 'app-my-componenty',
   templateUrl: './my-component.component.html',
@@ -11,14 +11,34 @@ import { Router } from '@angular/router';
 export class MyComponentComponent implements OnInit {
   validateForm!:FormGroup;
   submittedData: { username: string, qualification: string, address: string}[] = [];
-
+  collectedData: any[] = [];//for collect json from djago
+  collectedDataservice: any[] = [];//for collect json from djago call service
   submitForm(): void {
     
     if (this.validateForm.valid) {
+      let delement=false
       const username = this.validateForm.get('userName')?.value;
       const qualification = this.validateForm.get('QualificationData')?.value;
       const address = this.validateForm.get('addressData')?.value;
-      this.dataSet.push({username,qualification,address});
+      for (const item of this.dataSet){
+        if (item.username !== username && item.qualification !==qualification && item.address !==address) {
+          console.log('notmatch')
+          delement=true
+          const date = new Date()
+          console.log(date);
+          
+        }else{
+          delement=false
+          
+        }
+        console.log(item.address)
+      }
+      if (delement) {
+        this.dataSet.push({username,qualification,address});
+      }
+          
+      
+      
       console.log(this.submittedData)
       console.log('submit', this.validateForm.value);
       console.log(this.dataSet)
@@ -32,9 +52,13 @@ export class MyComponentComponent implements OnInit {
       });
     }
   }
-  constructor(private formBuilder: FormBuilder,private router: Router) {}
+  constructor(private formBuilder: FormBuilder,private router: Router,private http: HttpClient,private dataService: DataService) {}
 
   ngOnInit(): void {
+   this.http.get<any>('http://127.0.0.1:8000/home/').subscribe(response => {
+    this.collectedData = response.data; // Assuming your response contains a "data" property with an array
+  });
+  
     this.validateForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
       QualificationData: [null, [Validators.required]],
@@ -42,6 +66,16 @@ export class MyComponentComponent implements OnInit {
       remember: [true]
       
     });
+
+    this.dataService.getData().subscribe(response => {
+      this.collectedDataservice = response.data; // Access the 'data' property
+    });
+
+    
+
+
+
+    
     
   }
 
@@ -62,7 +96,7 @@ export class MyComponentComponent implements OnInit {
       address: 'Sidney No. 1 Lake Park'
     }
   ];
-
+   
   
 }
 
