@@ -60,7 +60,7 @@
 </div>
 <!--table end-->
 
-<!--json data view-->
+<!--json data view
 <h1>json Display</h1>
 <div *ngFor="let entry of collectedData">
   <p>Name: {{ entry.Name }}</p>
@@ -68,7 +68,7 @@
   <p>Address: {{ entry.Address }}</p>
   <hr>
 </div>
-
+-->
 
 
 <!--json data view end -->
@@ -78,9 +78,9 @@
 <!--data call from service-->
 <h1>Data service</h1>
 <div *ngFor="let entry of collectedDataservice ">
-  <p>Name: {{ entry.Name }}</p>
-  <p>Age: {{ entry.Age }}</p>
-  <p>Address: {{ entry.Address }}</p>
+  <p>Name: {{ entry[1]}}</p>
+  <p>qualification: {{ entry[2]}}</p>
+  <p>Address: {{ entry[3]}}</p>
   <hr>
 </div>
 

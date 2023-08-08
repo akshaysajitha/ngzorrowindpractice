@@ -11,9 +11,14 @@ import { DataService } from '../data.service';
 export class MyComponentComponent implements OnInit {
   validateForm!:FormGroup;
   submittedData: { username: string, qualification: string, address: string}[] = [];
-  collectedData: any[] = [];//for collect json from djago
+  collectedData: [] = [];//for collect json from djago
   collectedDataservice: any[] = [];//for collect json from djago call service
   submitForm(): void {
+      const formData = this.validateForm.value;
+      this.http.post('http://127.0.0.1:8000/home/', formData).subscribe(
+        response => {
+          console.log('Data sent successfully:', response);
+        });
     
     if (this.validateForm.valid) {
       let delement=false
@@ -57,7 +62,9 @@ export class MyComponentComponent implements OnInit {
   ngOnInit(): void {
    this.http.get<any>('http://127.0.0.1:8000/home/').subscribe(response => {
     this.collectedData = response.data; // Assuming your response contains a "data" property with an array
+    console.log('directcompcall'+this.collectedData)
   });
+
   
     this.validateForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
@@ -66,10 +73,20 @@ export class MyComponentComponent implements OnInit {
       remember: [true]
       
     });
+    
 
-    this.dataService.getData().subscribe(response => {
-      this.collectedDataservice = response.data; // Access the 'data' property
-    });
+    this.dataService.getData().subscribe(
+      response => {
+        this.collectedDataservice = response;
+        console.log('check service', this.collectedDataservice);
+      });
+
+      // api set to add data in django
+      
+      
+
+
+    
 
     
 
